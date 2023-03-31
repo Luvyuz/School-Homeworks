@@ -1,0 +1,26 @@
+Un produttore di aerei militari possiede 5 fabbriche dislocate sul territorio nazionale.
+Ciascuna di queste fabbriche ha un codice che la identifica: ALFA, BRAVO, CHARLIE, DELTA, ECHO.
+In ciascuna fabbrica per produrre un aereo viene impiegato un certo tempo (come da tabella) e occorre poi trasportare l'aereo presso il magazzino con un tempo che dipende dalla distanza dal magazzino stesso secondo la seguente formula: t = distanza * 0,1
+
+            T. prod.   Distanza
+ALFA        500 gg        800 km
+BRAVO       450 gg        400 km
+CHARLIE     600 gg        300 km
+DELTA       350 gg        600 km
+ECHO        720 gg        200 km
+
+Ogni fabbrica marchia gli aerei che produce tramite un codice sequenziale preceduto dal nome della fabbrica stessa (es. ALFA1, ALFA2, DELTA6, DELTA7, ecc.)
+
+Il magazzino del dipartimento della difesa ha a disposizione 10 slot per ospitare dei velivoli.
+
+Il DOD ha preso accordi con tre enti che periodicamente richiedono la fornitura di velivoli militari, secondo un certo quantitativo come da tabella:
+
+            Richiesti   Tempistiche
+Marines         3           2000 gg
+US Navy         5           2300 gg
+Air Force       7           1500 gg
+
+La fornitura va a buon fine solo se in magazzino sono disponibili sufficienti velivoli, altrimenti viene evasa appena disponibili.
+La produzione altresì procede finché c'è spazio disponibile in magazzino. In caso contrario viene messa temporaneamente in pausa.
+
+Si stampi il registro delle forniture e degli acquisti per un periodo di massimo 20 anni, dopodiché fabbriche ed enti verranno "distrutti".
