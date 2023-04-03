@@ -18,8 +18,8 @@ public class Finestra extends JFrame {
     }
 
     public void init(){
+        informazioni = FileManager.loadDatabase();
         jTable = new JTable(informazioni, nomiColonne);
         scrollPane = new JScrollPane(jTable);
-        informazioni = FileManager.loadDatabase();
     }
 }
