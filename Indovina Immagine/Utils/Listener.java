@@ -1,41 +1,59 @@
 package Utils;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
-import Main.GUIWindow;
-import Main.IndovinaImmagine;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
+
+import Main.GameGUI;
 
 public class Listener implements ActionListener {
 
-    private GUIWindow GUI;
-    private IndovinaImmagine gioco;
-    public Listener(GUIWindow GUI){
+    private GameGUI GUI;
+    
+    public Listener(GameGUI GUI){
         this.GUI = GUI;
-        gioco = new IndovinaImmagine();
-        gioco.setLblImg(GUI.getLabelImg());
+        GUI.startGame();
+        GUI.getGame().setLblImg(GUI.getLabelImg());
     }
     @Override
     public void actionPerformed(ActionEvent e) {
         String scelta = e.getActionCommand();
 
-        switch(scelta){
+        switch(scelta){ 
 
             case "Conferma":
-
-                gioco.reset();
-                /*
-                if(gioco.indovinato(GUI.getSelectedButton())){
+                if(GUI.getGame().getNomeImg() == null)
+                    GUI.getGame().reset();
+                if(GUI.getGame().indovinato(GUI.getSelectedButton())){
                     System.out.println("Hai indovinato!");
                 }else{
                     System.out.println("Non hai indovinato!");
                 }
- */
+                GUI.getGame().reset();
                 GUI.resetOptions();
-                GUI.aggiungiRadioButttons();
+                GUI.updateButtons();
+                GUI.updatePoints();
+                break;
+            case "Inizia":
+                GUI.getBtnGeneraImg().setText("Conferma");
+                if(GUI.getGame().getNomeImg() == null)
+                GUI.getGame().reset();
+                GUI.resetOptions();
+                GUI.updateButtons();
+                GUI.updatePoints();
+                break;
+            case "Chiudi":
+                JOptionPane.showMessageDialog(new JFrame() , "Punti: "  + GUI.getGame().getPunti() , "Fine Gioco", JOptionPane.CLOSED_OPTION);
+                FileManager.salvaSuFile(GUI.getNomeUtente(), GUI.getGame().getPunti());
+                GUI.getGameFrame().dispatchEvent(new WindowEvent(GUI.getGameFrame(), WindowEvent.WINDOW_CLOSING));
                 break;
             default:
                 //Da aggiungere altre features
-                //System.out.println("Nessun ActionPerformed");
+                //System.out.println(e.getActionCommand());
                 break;
         }
     }
